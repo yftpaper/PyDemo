@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>可视化</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=21b0db8a5568c3d7094e0360c5f78dae"></script>
+    <script>
+        let container = document.getElementById('container')
+        container.style.width = window.innerWidth + 'px';
+        container.style.height = window.innerHeight + 'px';
+
+        let map = new AMap.Map(container, {
+            resizeEnable: true, //是否监控地图容器尺寸变化
+            zoom: 13, //初始化地图层级
+            center: [116.397428, 39.90923] //初始化地图中心点
+        });
+
+        
+    </script>
+</body>
+
+</html>
