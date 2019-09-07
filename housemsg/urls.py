@@ -39,6 +39,7 @@ def get_msg_l(t, s, q, r, m1, m2):
     # 公寓型
     apartment_list = []
     p = 0
+    page = 0
     url = _get_url(t)
     url_h = _get_url_h(t)
     while True:
@@ -49,8 +50,11 @@ def get_msg_l(t, s, q, r, m1, m2):
         html = bs(response.text, features="lxml")
         house_msg_l = html.select('.content__list--item')
 
+        if page == 0:
+            page = int(html.select('.content__pg')[0]['data-totalpage'])
+
         # 房源信息没有时退出
-        if html.select('.content__empty1'):
+        if p > page:
             break
 
         for house in house_msg_l:

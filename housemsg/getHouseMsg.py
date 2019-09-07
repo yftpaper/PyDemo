@@ -1,5 +1,6 @@
 import xlwt
 import housemsg.urls as urls
+import datetime
 
 
 # import argparse
@@ -18,15 +19,15 @@ import housemsg.urls as urls
 
 
 def set_title(sh, st):
-    sh.write(0, 0, '链接', st)
-    sh.write(0, 1, '价格', st)
-    sh.write(0, 2, '地址', st)
-    sh.write(0, 3, '面积', st)
-    sh.write(0, 4, '房型', st)
+    sh.write(0, 0, 'url', st)
+    sh.write(0, 1, 'price', st)
+    sh.write(0, 2, 'address', st)
+    sh.write(0, 3, 'area', st)
+    sh.write(0, 4, 'type', st)
 
 
 if __name__ == '__main__':
-    house_list = urls.get_msg_l(1, 'sz', 'baoanqu', 'rco21', 800, 1000)
+    house_list = urls.get_msg_l(1, 'sz', 'baoanqu', '', 800, 1000)
 
     # 创建工作簿
     book = xlwt.Workbook(encoding='utf-8')
@@ -42,7 +43,7 @@ if __name__ == '__main__':
     # font.italic = True  # 斜体字
     style.font = font  # 设定样式
     set_title(sheet_one, style)
-    sheet_one.write(0, 5, '高度', style)
+    sheet_one.write(0, 5, 'height', style)
     set_title(sheet_two, style)
 
     sheet = sheet_one
@@ -58,5 +59,6 @@ if __name__ == '__main__':
             j += 1
             sheet.write(i, j, _msg)
 
+    name = datetime.datetime.now().strftime('%Y%m%d')
     # 保存
-    book.save('C:\\Users\\yftpa\\Desktop\\house msg.xls')
+    book.save('house' + name + '.xls')
